@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/humbeatbox/Teaching-Platform.git
+    repoURL: https://github.com/humbeatbox/Teaching-Platform-Infra.git
     targetRevision: HEAD
     path: infrastructure/kubernetes/apps/teaching-platform
   destination:
