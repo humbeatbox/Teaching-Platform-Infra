@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teaching-platform
+  namespace: teaching-platform
+  labels:
+    app: teaching-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teaching-platform
+  template:
+    metadata:
+      labels:
+        app: teaching-platform
+    spec:
+      imagePullSecrets:
+        - name: ecr-secret
+      containers:
+        - name: teaching-platform
+          image: 688948287774.dkr.ecr.ca-central-1.amazonaws.com/teaching-platform:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: PORT
+              value: "8080"
+            - name: MONGODB_URI
+              value: "mongodb://mongodb.teaching-platform.svc.cluster.local:27017/teaching-platform"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5

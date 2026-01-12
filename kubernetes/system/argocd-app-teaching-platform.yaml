@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: teaching-platform
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/humbeatbox/Teaching-Platform.git
+    targetRevision: HEAD
+    path: infrastructure/kubernetes/apps/teaching-platform
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: teaching-platform
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
