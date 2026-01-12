@@ -29,7 +29,10 @@ spec:
             - name: MONGODB_CONNECTION
               value: "mongodb://mongodb.teaching-platform.svc.cluster.local:27017/teaching-platform"
             - name: PASSPORT_SECRET
-              value: "dev_secret_key"
+              valueFrom:
+                secretKeyRef:
+                  name: teaching-platform-secrets
+                  key: PASSPORT_SECRET
             - name: API_URL
               value: "/api"
           resources:
