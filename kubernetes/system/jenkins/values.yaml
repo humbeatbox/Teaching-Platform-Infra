@@ -1,0 +1,128 @@
+# Jenkins Helm Chart Values
+# For K3s deployment with Kubernetes plugin
+
+controller:
+  # Jenkins controller configuration
+  image:
+    repository: "jenkins/jenkins"
+    tag: "lts-jdk17"
+    pullPolicy: "IfNotPresent"
+  
+  # Admin user
+  admin:
+    username: "admin"
+    # Password will be auto-generated, retrieve with:
+    # kubectl exec -n cicd -it svc/jenkins -c jenkins -- cat /run/secrets/additional/chart-admin-password
+  
+  # Resource limits
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "2000m"
+      memory: "4Gi"
+  
+  # Java options
+  javaOpts: "-Xmx2g -Xms1g"
+  
+  # Jenkins URL (for webhooks)
+  jenkinsUrl: "http://jenkins.cicd.svc.cluster.local:8080"
+  
+  # Install plugins - simplified to avoid dependency conflicts
+  installPlugins:
+    - kubernetes:latest
+    - workflow-aggregator:latest
+    - git:latest
+    - configuration-as-code:latest
+    - docker-workflow:latest
+  
+  # Additional plugins (will be installed on first boot)
+  additionalPlugins: []
+  
+  # Persistence for Jenkins data
+  persistence:
+    enabled: true
+    storageClass: "local-path"  # K3s built-in storage class
+    size: "10Gi"
+    accessMode: "ReadWriteOnce"
+  
+  # Service configuration
+  serviceType: "NodePort"
+  servicePort: 8080
+  nodePort: 32080
+  
+  # Security
+  securityRealm: |-
+    local:
+      allowsSignup: false
+  
+  # Jenkins Configuration as Code (JCasC)
+  JCasC:
+    defaultConfig: true
+    configScripts:
+      welcome-message: |
+        jenkins:
+          systemMessage: "DevOps Teaching Platform - CI/CD Pipeline\n\nWelcome to the automated build system!"
+      
+      kubernetes-cloud: |
+        jenkins:
+          clouds:
+            - kubernetes:
+                name: "kubernetes"
+                serverUrl: "https://kubernetes.default"
+                namespace: "cicd"
+                jenkinsUrl: "http://jenkins:8080"
+                jenkinsTunnel: "jenkins-agent:50000"
+                containerCapStr: "10"
+                maxRequestsPerHostStr: "32"
+                retentionTimeout: 5
+                connectTimeout: 60
+                readTimeout: 60
+                templates:
+                  - name: "docker-agent"
+                    namespace: "cicd"
+                    label: "docker"
+                    nodeUsageMode: NORMAL
+                    containers:
+                      - name: "docker"
+                        image: "docker:24-dind"
+                        privileged: true
+                        ttyEnabled: true
+                        command: "cat"
+                        resourceRequestCpu: "500m"
+                        resourceRequestMemory: "1Gi"
+                        resourceLimitCpu: "2000m"
+                        resourceLimitMemory: "2Gi"
+                      - name: "kubectl"
+                        image: "bitnami/kubectl:latest"
+                        ttyEnabled: true
+                        command: "cat"
+                    volumes:
+                      - emptyDirVolume:
+                          memory: false
+                          mountPath: "/var/lib/docker"
+                    yaml: |
+                      spec:
+                        securityContext:
+                          fsGroup: 1000
+
+# Agent configuration
+agent:
+  enabled: true
+  namespace: "cicd"
+  
+# RBAC
+rbac:
+  create: true
+  readSecrets: true
+
+# Service Account
+serviceAccount:
+  create: true
+  name: jenkins
+  annotations: {}
+
+# Ingress (disabled for now, using port-forward)
+ingress:
+  enabled: false

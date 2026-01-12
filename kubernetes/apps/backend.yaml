@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: teaching-platform-backend:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        env:
+        - name: API_URL
+          value: "http://localhost:8080/api"
+        - name: MONGODB_CONNECTION
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: MONGODB_CONNECTION
+        - name: PASSPORT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: PASSPORT_SECRET
+        # Liveness Probe: Checks if app is running
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        # Readiness Probe: Checks if app is ready to serve traffic (connected to DB)
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: backend
+  ports:
+  - port: 8080
+    targetPort: 8080
