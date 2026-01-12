@@ -1,0 +1,1024 @@
+{
+  "version": 4,
+  "terraform_version": "1.12.1",
+  "serial": 68,
+  "lineage": "6b85e81b-be88-e8b6-a19a-a1240b7eb138",
+  "outputs": {
+    "nameservers": {
+      "value": [
+        "ns-1398.awsdns-46.org",
+        "ns-1994.awsdns-57.co.uk",
+        "ns-417.awsdns-52.com",
+        "ns-732.awsdns-27.net"
+      ],
+      "type": [
+        "list",
+        "string"
+      ]
+    },
+    "public_ip": {
+      "value": null,
+      "type": "string"
+    },
+    "ssh_command": {
+      "value": null,
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "aws_ami",
+      "name": "ubuntu",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "allow_unsafe_filter": null,
+            "architecture": "x86_64",
+            "arn": "arn:aws:ec2:ca-central-1::image/ami-0938a60d87953e820",
+            "block_device_mappings": [
+              {
+                "device_name": "/dev/sda1",
+                "ebs": {
+                  "delete_on_termination": "true",
+                  "encrypted": "false",
+                  "iops": "0",
+                  "snapshot_id": "snap-0af4e9fea7335b2f5",
+                  "throughput": "0",
+                  "volume_initialization_rate": "0",
+                  "volume_size": "8",
+                  "volume_type": "gp3"
+                },
+                "no_device": "",
+                "virtual_name": ""
+              },
+              {
+                "device_name": "/dev/sdb",
+                "ebs": {},
+                "no_device": "",
+                "virtual_name": "ephemeral0"
+              },
+              {
+                "device_name": "/dev/sdc",
+                "ebs": {},
+                "no_device": "",
+                "virtual_name": "ephemeral1"
+              }
+            ],
+            "boot_mode": "uefi-preferred",
+            "creation_date": "2025-12-12T10:47:19.000Z",
+            "deprecation_time": "2027-12-12T10:47:19.000Z",
+            "description": "Canonical, Ubuntu, 24.04, amd64 noble image",
+            "ena_support": true,
+            "executable_users": null,
+            "filter": [
+              {
+                "name": "name",
+                "values": [
+                  "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"
+                ]
+              }
+            ],
+            "hypervisor": "xen",
+            "id": "ami-0938a60d87953e820",
+            "image_id": "ami-0938a60d87953e820",
+            "image_location": "amazon/ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20251212",
+            "image_owner_alias": "amazon",
+            "image_type": "machine",
+            "imds_support": "v2.0",
+            "include_deprecated": false,
+            "kernel_id": "",
+            "last_launched_time": "",
+            "most_recent": true,
+            "name": "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20251212",
+            "name_regex": null,
+            "owner_id": "099720109477",
+            "owners": [
+              "099720109477"
+            ],
+            "platform": "",
+            "platform_details": "Linux/UNIX",
+            "product_codes": [],
+            "public": true,
+            "ramdisk_id": "",
+            "region": "ca-central-1",
+            "root_device_name": "/dev/sda1",
+            "root_device_type": "ebs",
+            "root_snapshot_id": "snap-0af4e9fea7335b2f5",
+            "sriov_net_support": "simple",
+            "state": "available",
+            "state_reason": {
+              "code": "UNSET",
+              "message": "UNSET"
+            },
+            "tags": {},
+            "timeouts": null,
+            "tpm_support": "",
+            "uefi_data": null,
+            "usage_operation": "RunInstances",
+            "virtualization_type": "hvm"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_acm_certificate",
+      "name": "cert",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"].us_east_1",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:acm:us-east-1:688948287774:certificate/c978ecd9-f596-43ac-9146-9a97866e1865",
+            "certificate_authority_arn": "",
+            "certificate_body": null,
+            "certificate_chain": null,
+            "domain_name": "mern.garychang1214.com",
+            "domain_validation_options": [
+              {
+                "domain_name": "*.mern.garychang1214.com",
+                "resource_record_name": "_6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com.",
+                "resource_record_type": "CNAME",
+                "resource_record_value": "_058350121fb83947959218adda7c4a48.jkddzztszm.acm-validations.aws."
+              },
+              {
+                "domain_name": "mern.garychang1214.com",
+                "resource_record_name": "_6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com.",
+                "resource_record_type": "CNAME",
+                "resource_record_value": "_058350121fb83947959218adda7c4a48.jkddzztszm.acm-validations.aws."
+              }
+            ],
+            "early_renewal_duration": "",
+            "id": "arn:aws:acm:us-east-1:688948287774:certificate/c978ecd9-f596-43ac-9146-9a97866e1865",
+            "key_algorithm": "RSA_2048",
+            "not_after": "2027-02-10T23:59:59Z",
+            "not_before": "2026-01-12T00:00:00Z",
+            "options": [
+              {
+                "certificate_transparency_logging_preference": "ENABLED",
+                "export": "DISABLED"
+              }
+            ],
+            "pending_renewal": false,
+            "private_key": null,
+            "region": "us-east-1",
+            "renewal_eligibility": "INELIGIBLE",
+            "renewal_summary": [],
+            "status": "ISSUED",
+            "subject_alternative_names": [
+              "*.mern.garychang1214.com",
+              "mern.garychang1214.com"
+            ],
+            "tags": {},
+            "tags_all": {},
+            "type": "AMAZON_ISSUED",
+            "validation_emails": [],
+            "validation_method": "DNS",
+            "validation_option": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:acm:us-east-1:688948287774:certificate/c978ecd9-f596-43ac-9146-9a97866e1865"
+          },
+          "private": "bnVsbA==",
+          "create_before_destroy": true
+        },
+        {
+          "deposed": "cc17064a",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:acm:us-east-1:688948287774:certificate/7db02265-cebe-451d-8f14-ae71c05b832a",
+            "certificate_authority_arn": "",
+            "certificate_body": null,
+            "certificate_chain": null,
+            "domain_name": "garychang1214.com",
+            "domain_validation_options": [
+              {
+                "domain_name": "*.garychang1214.com",
+                "resource_record_name": "_a60ecdd52556e4365bd6252de87f2337.garychang1214.com.",
+                "resource_record_type": "CNAME",
+                "resource_record_value": "_35e43c3371f9b72093f415e5f4b79996.jkddzztszm.acm-validations.aws."
+              },
+              {
+                "domain_name": "garychang1214.com",
+                "resource_record_name": "_a60ecdd52556e4365bd6252de87f2337.garychang1214.com.",
+                "resource_record_type": "CNAME",
+                "resource_record_value": "_35e43c3371f9b72093f415e5f4b79996.jkddzztszm.acm-validations.aws."
+              }
+            ],
+            "early_renewal_duration": "",
+            "id": "arn:aws:acm:us-east-1:688948287774:certificate/7db02265-cebe-451d-8f14-ae71c05b832a",
+            "key_algorithm": "RSA_2048",
+            "not_after": "",
+            "not_before": "",
+            "options": [
+              {
+                "certificate_transparency_logging_preference": "ENABLED",
+                "export": "DISABLED"
+              }
+            ],
+            "pending_renewal": false,
+            "private_key": null,
+            "region": "us-east-1",
+            "renewal_eligibility": "INELIGIBLE",
+            "renewal_summary": [],
+            "status": "PENDING_VALIDATION",
+            "subject_alternative_names": [
+              "*.garychang1214.com",
+              "garychang1214.com"
+            ],
+            "tags": {},
+            "tags_all": {},
+            "type": "AMAZON_ISSUED",
+            "validation_emails": [],
+            "validation_method": "DNS",
+            "validation_option": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:acm:us-east-1:688948287774:certificate/7db02265-cebe-451d-8f14-ae71c05b832a"
+          },
+          "private": "bnVsbA==",
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_acm_certificate_validation",
+      "name": "cert",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"].us_east_1",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "certificate_arn": "arn:aws:acm:us-east-1:688948287774:certificate/c978ecd9-f596-43ac-9146-9a97866e1865",
+            "id": "2026-01-12 05:55:33.805 +0000 UTC",
+            "region": "us-east-1",
+            "timeouts": null,
+            "validation_record_fqdns": [
+              "_6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com"
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo0NTAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "aws_acm_certificate.cert",
+            "aws_route53_record.cert_validation",
+            "aws_route53_zone.primary"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_internet_gateway",
+      "name": "igw",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:ca-central-1:688948287774:internet-gateway/igw-0f112267dd34e6ccd",
+            "id": "igw-0f112267dd34e6ccd",
+            "owner_id": "688948287774",
+            "region": "ca-central-1",
+            "tags": {
+              "Name": "devops-sandbox-igw"
+            },
+            "tags_all": {
+              "Name": "devops-sandbox-igw"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-05257fce419460026"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_key_pair",
+      "name": "generated_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:ca-central-1:688948287774:key-pair/devops-sandbox-key",
+            "fingerprint": "1f:4d:3a:f4:26:b9:bb:c1:5f:a5:ae:c2:34:6d:6e:01",
+            "id": "devops-sandbox-key",
+            "key_name": "devops-sandbox-key",
+            "key_name_prefix": "",
+            "key_pair_id": "key-0cddfbe5690d52691",
+            "key_type": "rsa",
+            "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC59RvuR0fnPgtJft67Miznm9LPs8NFhci25vb2qCbF/vdeB7mn3pxUiYSp9RlpTSea9OHLNl5Ykj/a90oX3EwDBBVZ+EotjVesT1MUksm6HpHMeWJhMQIEzA+M/KuWfii09Sh2LwyltBn5MJ0ThjDPlfs0HN74voNSAxvEJ7O8HWq3MYNT8TASFxGdBAMugoDhzoaPpV4w2/5VcZHZm3V1i6Z7NN0saT04PsP37QZ0QgWtiBylMrnSV7ohjg87NSebLMCZ9Jt23r4/uVfev+2JbiZbctTwejQQYtrW+1oXkA5mDjbSTrI3m9rQcSGQCMVzDLBPcLOJRitKq3bfguu0ddgmm2eI6AA1Fs2aJNLB3FCtUP8ak3jU2sooX4MnZU5JFC7leMyKimdh3bBI056BVa9HI41uysrZd/dALCJxMR47Vlvc8y0e4q3Tq4yfe3kbDXocX3uu+WI3C4W5jbFv6eTj+f7vDqKs+dQo6cppH8rpwlR6L/cBOFAfDaT3/z9veVInMPswT5knn/Sl9cv7r3T05NnOA4Q/qaXuyO7F3xSKFF2zIKhVGTZgnLpvV65GO/nSiGjbn55MdGrjr5MKL/BiZCKGs1x0j4mdt8Chot+Jy1PrOJ79qEXbxULlIfB/I1sMNHLWqF8LPabg0tB1gz7T6RN00Ys8oaIkHtZT3w==",
+            "region": "ca-central-1",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "tls_private_key.pk"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_route53_record",
+      "name": "cert_validation",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"].us_east_1",
+      "instances": [
+        {
+          "index_key": "*.mern.garychang1214.com",
+          "schema_version": 2,
+          "attributes": {
+            "alias": [],
+            "allow_overwrite": true,
+            "cidr_routing_policy": [],
+            "failover_routing_policy": [],
+            "fqdn": "_6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com",
+            "geolocation_routing_policy": [],
+            "geoproximity_routing_policy": [],
+            "health_check_id": "",
+            "id": "Z0949758Z6C0FXRJV1MW__6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com._CNAME",
+            "latency_routing_policy": [],
+            "multivalue_answer_routing_policy": false,
+            "name": "_6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com",
+            "records": [
+              "_058350121fb83947959218adda7c4a48.jkddzztszm.acm-validations.aws."
+            ],
+            "set_identifier": "",
+            "timeouts": null,
+            "ttl": 60,
+            "type": "CNAME",
+            "weighted_routing_policy": [],
+            "zone_id": "Z0949758Z6C0FXRJV1MW"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "688948287774",
+            "name": "_6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com",
+            "set_identifier": null,
+            "type": "CNAME",
+            "zone_id": "Z0949758Z6C0FXRJV1MW"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMiJ9",
+          "dependencies": [
+            "aws_acm_certificate.cert",
+            "aws_route53_zone.primary"
+          ]
+        },
+        {
+          "index_key": "mern.garychang1214.com",
+          "schema_version": 2,
+          "attributes": {
+            "alias": [],
+            "allow_overwrite": true,
+            "cidr_routing_policy": [],
+            "failover_routing_policy": [],
+            "fqdn": "_6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com",
+            "geolocation_routing_policy": [],
+            "geoproximity_routing_policy": [],
+            "health_check_id": "",
+            "id": "Z0949758Z6C0FXRJV1MW__6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com._CNAME",
+            "latency_routing_policy": [],
+            "multivalue_answer_routing_policy": false,
+            "name": "_6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com",
+            "records": [
+              "_058350121fb83947959218adda7c4a48.jkddzztszm.acm-validations.aws."
+            ],
+            "set_identifier": "",
+            "timeouts": null,
+            "ttl": 60,
+            "type": "CNAME",
+            "weighted_routing_policy": [],
+            "zone_id": "Z0949758Z6C0FXRJV1MW"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "688948287774",
+            "name": "_6a46947dd4da1a6cfed5b2bc1c53c69a.mern.garychang1214.com",
+            "set_identifier": null,
+            "type": "CNAME",
+            "zone_id": "Z0949758Z6C0FXRJV1MW"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMiJ9",
+          "dependencies": [
+            "aws_acm_certificate.cert",
+            "aws_route53_zone.primary"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_route53_zone",
+      "name": "primary",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:route53:::hostedzone/Z0949758Z6C0FXRJV1MW",
+            "comment": "Managed by Terraform",
+            "delegation_set_id": "",
+            "enable_accelerated_recovery": false,
+            "force_destroy": false,
+            "id": "Z0949758Z6C0FXRJV1MW",
+            "name": "mern.garychang1214.com",
+            "name_servers": [
+              "ns-1398.awsdns-46.org",
+              "ns-1994.awsdns-57.co.uk",
+              "ns-417.awsdns-52.com",
+              "ns-732.awsdns-27.net"
+            ],
+            "primary_name_server": "ns-1994.awsdns-57.co.uk",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "vpc": [],
+            "zone_id": "Z0949758Z6C0FXRJV1MW"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH19"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_route_table",
+      "name": "public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:ca-central-1:688948287774:route-table/rtb-0cf80b477dda912f9",
+            "id": "rtb-0cf80b477dda912f9",
+            "owner_id": "688948287774",
+            "propagating_vgws": [],
+            "region": "ca-central-1",
+            "route": [
+              {
+                "carrier_gateway_id": "",
+                "cidr_block": "0.0.0.0/0",
+                "core_network_arn": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "igw-0f112267dd34e6ccd",
+                "ipv6_cidr_block": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "",
+                "network_interface_id": "",
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              }
+            ],
+            "tags": {
+              "Name": "devops-sandbox-public-rt"
+            },
+            "tags_all": {
+              "Name": "devops-sandbox-public-rt"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-05257fce419460026"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "688948287774",
+            "id": "rtb-0cf80b477dda912f9",
+            "region": "ca-central-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_internet_gateway.igw",
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_route_table_association",
+      "name": "public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-0dcc2f39c15dbb527",
+            "region": "ca-central-1",
+            "route_table_id": "rtb-0cf80b477dda912f9",
+            "subnet_id": "subnet-0c3ca3decb907a588",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_internet_gateway.igw",
+            "aws_route_table.public",
+            "aws_subnet.public",
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "devops_sg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:ca-central-1:688948287774:security-group/sg-0bafb31bd10fa6ee6",
+            "description": "Allow SSH, HTTP, K8s API, and App ports",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "id": "sg-0bafb31bd10fa6ee6",
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 22,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 22
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 30000,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 32767
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 443,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 443
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 6443,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 6443
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 8080,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 8080
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 80,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 80
+              }
+            ],
+            "name": "devops-sandbox-sg",
+            "name_prefix": "",
+            "owner_id": "688948287774",
+            "region": "ca-central-1",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Name": "devops-sandbox-sg"
+            },
+            "tags_all": {
+              "Name": "devops-sandbox-sg"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-05257fce419460026"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "688948287774",
+            "id": "sg-0bafb31bd10fa6ee6",
+            "region": "ca-central-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:ca-central-1:688948287774:subnet/subnet-0c3ca3decb907a588",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "ca-central-1a",
+            "availability_zone_id": "cac1-az1",
+            "cidr_block": "10.0.1.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-0c3ca3decb907a588",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": true,
+            "outpost_arn": "",
+            "owner_id": "688948287774",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "ca-central-1",
+            "tags": {
+              "Name": "devops-sandbox-public-subnet"
+            },
+            "tags_all": {
+              "Name": "devops-sandbox-public-subnet"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-05257fce419460026"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "688948287774",
+            "id": "subnet-0c3ca3decb907a588",
+            "region": "ca-central-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_vpc",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:ca-central-1:688948287774:vpc/vpc-05257fce419460026",
+            "assign_generated_ipv6_cidr_block": false,
+            "cidr_block": "10.0.0.0/16",
+            "default_network_acl_id": null,
+            "default_route_table_id": "rtb-08b926a399af337fe",
+            "default_security_group_id": "sg-03e8549a5a1575f0f",
+            "dhcp_options_id": "dopt-045035a51c9a955a4",
+            "enable_dns_hostnames": true,
+            "enable_dns_support": true,
+            "enable_network_address_usage_metrics": false,
+            "id": "vpc-05257fce419460026",
+            "instance_tenancy": "default",
+            "ipv4_ipam_pool_id": null,
+            "ipv4_netmask_length": null,
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_network_border_group": "",
+            "ipv6_ipam_pool_id": "",
+            "ipv6_netmask_length": 0,
+            "main_route_table_id": "rtb-08b926a399af337fe",
+            "owner_id": "688948287774",
+            "region": "ca-central-1",
+            "tags": {
+              "Name": "devops-sandbox-vpc"
+            },
+            "tags_all": {
+              "Name": "devops-sandbox-vpc"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "688948287774",
+            "id": "vpc-05257fce419460026",
+            "region": "ca-central-1"
+          },
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "cloudflare_record",
+      "name": "ns",
+      "provider": "provider[\"registry.terraform.io/cloudflare/cloudflare\"]",
+      "instances": [
+        {
+          "index_key": "ns-1398.awsdns-46.org",
+          "schema_version": 3,
+          "attributes": {
+            "allow_overwrite": true,
+            "comment": "",
+            "content": null,
+            "created_on": "2026-01-12T06:18:28.13331Z",
+            "data": [],
+            "hostname": "mern.garychang1214.com",
+            "id": "34c1f0a1d7b71da1dbd04a3299fbe0f3",
+            "metadata": {},
+            "modified_on": "2026-01-12T06:18:28.13331Z",
+            "name": "mern",
+            "priority": null,
+            "proxiable": false,
+            "proxied": false,
+            "tags": [],
+            "timeouts": null,
+            "ttl": 3600,
+            "type": "NS",
+            "value": "ns-1398.awsdns-46.org",
+            "zone_id": "3c39341f5fd377ead8a17c44be80b055"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMCwidXBkYXRlIjozMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMyJ9",
+          "dependencies": [
+            "aws_route53_zone.primary"
+          ]
+        },
+        {
+          "index_key": "ns-1994.awsdns-57.co.uk",
+          "schema_version": 3,
+          "attributes": {
+            "allow_overwrite": true,
+            "comment": "",
+            "content": null,
+            "created_on": "2026-01-12T06:18:28.964935Z",
+            "data": [],
+            "hostname": "mern.garychang1214.com",
+            "id": "2ca874ba74fa80db2c03fce1a185fd31",
+            "metadata": {},
+            "modified_on": "2026-01-12T06:18:28.964935Z",
+            "name": "mern",
+            "priority": null,
+            "proxiable": false,
+            "proxied": false,
+            "tags": [],
+            "timeouts": null,
+            "ttl": 3600,
+            "type": "NS",
+            "value": "ns-1994.awsdns-57.co.uk",
+            "zone_id": "3c39341f5fd377ead8a17c44be80b055"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMCwidXBkYXRlIjozMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMyJ9",
+          "dependencies": [
+            "aws_route53_zone.primary"
+          ]
+        },
+        {
+          "index_key": "ns-417.awsdns-52.com",
+          "schema_version": 3,
+          "attributes": {
+            "allow_overwrite": true,
+            "comment": "",
+            "content": null,
+            "created_on": "2026-01-12T06:18:28.470323Z",
+            "data": [],
+            "hostname": "mern.garychang1214.com",
+            "id": "a5b6ad192d81e6d7805a4d14c4342f7a",
+            "metadata": {},
+            "modified_on": "2026-01-12T06:18:28.470323Z",
+            "name": "mern",
+            "priority": null,
+            "proxiable": false,
+            "proxied": false,
+            "tags": [],
+            "timeouts": null,
+            "ttl": 3600,
+            "type": "NS",
+            "value": "ns-417.awsdns-52.com",
+            "zone_id": "3c39341f5fd377ead8a17c44be80b055"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMCwidXBkYXRlIjozMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMyJ9",
+          "dependencies": [
+            "aws_route53_zone.primary"
+          ]
+        },
+        {
+          "index_key": "ns-732.awsdns-27.net",
+          "schema_version": 3,
+          "attributes": {
+            "allow_overwrite": true,
+            "comment": "",
+            "content": null,
+            "created_on": "2026-01-12T06:18:28.800681Z",
+            "data": [],
+            "hostname": "mern.garychang1214.com",
+            "id": "0d2559ddea97c67efcf4b02c2dad404a",
+            "metadata": {},
+            "modified_on": "2026-01-12T06:18:28.800681Z",
+            "name": "mern",
+            "priority": null,
+            "proxiable": false,
+            "proxied": false,
+            "tags": [],
+            "timeouts": null,
+            "ttl": 3600,
+            "type": "NS",
+            "value": "ns-732.awsdns-27.net",
+            "zone_id": "3c39341f5fd377ead8a17c44be80b055"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMCwidXBkYXRlIjozMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMyJ9",
+          "dependencies": [
+            "aws_route53_zone.primary"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "local_file",
+      "name": "ssh_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/local\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "content": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n",
+            "content_base64": null,
+            "content_base64sha256": "1TyMAKOdbIG42+GdGgrPAFnB9mdmhsrr9/yiQdZitN0=",
+            "content_base64sha512": "MEpcuNRxSb0NA0e7RanGlboB0ckItYRsQa5D9COeXnnH/OVKxDS6xT4e6wATn+H0mRaw9y1cyjbWaqZORWK1Bw==",
+            "content_md5": "38251ebb615d5b0c8244b4b7ea8598f3",
+            "content_sha1": "4be9305b150b8cade5f31fe50e37ea745f65686d",
+            "content_sha256": "d53c8c00a39d6c81b8dbe19d1a0acf0059c1f6676686caebf7fca241d662b4dd",
+            "content_sha512": "304a5cb8d47149bd0d0347bb45a9c695ba01d1c908b5846c41ae43f4239e5e79c7fce54ac434bac53e1eeb00139fe1f49916b0f72d5cca36d66aa64e4562b507",
+            "directory_permission": "0777",
+            "file_permission": "0400",
+            "filename": "./devops-sandbox.pem",
+            "id": "4be9305b150b8cade5f31fe50e37ea745f65686d",
+            "sensitive_content": null,
+            "source": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "content"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "sensitive_content"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "tls_private_key.pk"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "tls_private_key",
+      "name": "pk",
+      "provider": "provider[\"registry.terraform.io/hashicorp/tls\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "algorithm": "RSA",
+            "ecdsa_curve": "P224",
+            "id": "ea3bfa6faa1b48d37e76c0c6bce2150308955549",
+            "private_key_openssh": "-----BEGIN OPENSSH PRIVATE KEY-----\n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\n-----END OPENSSH PRIVATE KEY-----\n",
+            "private_key_pem": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n",
+            "private_key_pem_pkcs8": "-----BEGIN PRIVATE KEY-----\n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\nZncnPkLlJG0ID/iNd2Axfnp0Q1c4V28=\n-----END PRIVATE KEY-----\n",
+            "public_key_fingerprint_md5": "9c:77:b8:06:5b:a3:ea:23:73:6a:83:e0:02:16:68:58",
+            "public_key_fingerprint_sha256": "SHA256:0BOCB8HrDPI2wafGR+3OVPDMOnYs+LY47yXRMCQd+zE",
+            "public_key_openssh": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC59RvuR0fnPgtJft67Miznm9LPs8NFhci25vb2qCbF/vdeB7mn3pxUiYSp9RlpTSea9OHLNl5Ykj/a90oX3EwDBBVZ+EotjVesT1MUksm6HpHMeWJhMQIEzA+M/KuWfii09Sh2LwyltBn5MJ0ThjDPlfs0HN74voNSAxvEJ7O8HWq3MYNT8TASFxGdBAMugoDhzoaPpV4w2/5VcZHZm3V1i6Z7NN0saT04PsP37QZ0QgWtiBylMrnSV7ohjg87NSebLMCZ9Jt23r4/uVfev+2JbiZbctTwejQQYtrW+1oXkA5mDjbSTrI3m9rQcSGQCMVzDLBPcLOJRitKq3bfguu0ddgmm2eI6AA1Fs2aJNLB3FCtUP8ak3jU2sooX4MnZU5JFC7leMyKimdh3bBI056BVa9HI41uysrZd/dALCJxMR47Vlvc8y0e4q3Tq4yfe3kbDXocX3uu+WI3C4W5jbFv6eTj+f7vDqKs+dQo6cppH8rpwlR6L/cBOFAfDaT3/z9veVInMPswT5knn/Sl9cv7r3T05NnOA4Q/qaXuyO7F3xSKFF2zIKhVGTZgnLpvV65GO/nSiGjbn55MdGrjr5MKL/BiZCKGs1x0j4mdt8Chot+Jy1PrOJ79qEXbxULlIfB/I1sMNHLWqF8LPabg0tB1gz7T6RN00Ys8oaIkHtZT3w==\n",
+            "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAufUb7kdH5z4LSX7euzIs\n55vSz7PDRYXItub29qgmxf73Xge5p96cVImEqfUZaU0nmvThyzZeWJI/2vdKF9xM\nAwQVWfhKLY1XrE9TFJLJuh6RzHliYTECBMwPjPyrln4otPUodi8MpbQZ+TCdE4Yw\nz5X7NBze+L6DUgMbxCezvB1qtzGDU/EwEhcRnQQDLoKA4c6Gj6VeMNv+VXGR2Zt1\ndYumezTdLGk9OD7D9+0GdEIFrYgcpTK50le6IY4POzUnmyzAmfSbdt6+P7lX3r/t\niW4mW3LU8Ho0EGLa1vtaF5AOZg420k6yN5va0HEhkAjFcwywT3CziUYrSqt234Lr\ntHXYJptniOgANRbNmiTSwdxQrVD/GpN41NrKKF+DJ2VOSRQu5XjMiopnYd2wSNOe\ngVWvRyONbsrK2Xf3QCwicTEeO1Zb3PMtHuKt06uMn3t5Gw16HF97rvliNwuFuY2x\nb+nk4/n+7w6irPnUKOnKaR/K6cJUei/3AThQHw2k9/8/b3lSJzD7ME+ZJ5/0pfXL\n+6909OTZzgOEP6ml7sjuxd8UihRdsyCoVRk2YJy6b1euRjv50oho25+eTHRq46+T\nCi/wYmQihrNcdI+JnbfAoaLfictT6zie/ahF28VC5SHwfyNbDDRy1qhfCz2m4NLQ\ndYM+0+kTdNGLPKGiJB7WU98CAwEAAQ==\n-----END PUBLIC KEY-----\n",
+            "rsa_bits": 4096
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_openssh"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_pem"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_pem_pkcs8"
+              }
+            ]
+          ],
+          "identity_schema_version": 0
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

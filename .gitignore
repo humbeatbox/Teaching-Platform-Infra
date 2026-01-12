@@ -1,8 +1,20 @@
-# Secrets
+# OS
+.DS_Store
+**/.DS_Store
+
+# Secrets (CRITICAL)
+*.pem
+*.key
+*.p12
+*.tfvars
 kubernetes/apps/secrets.yaml
 
 # Terraform
-terraform/.terraform
+**/.terraform/
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
+crash.log
+
+# Terraform Vars
+*.tfvars
