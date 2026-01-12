@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/humbeatbox/Teaching-Platform-Infra.git
     targetRevision: HEAD
-    path: infrastructure/kubernetes/apps/teaching-platform
+    path: kubernetes/apps/teaching-platform
   destination:
     server: https://kubernetes.default.svc
     namespace: teaching-platform
