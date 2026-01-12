@@ -30,6 +30,8 @@ spec:
               value: "mongodb://mongodb.teaching-platform.svc.cluster.local:27017/teaching-platform"
             - name: PASSPORT_SECRET
               value: "dev_secret_key"
+            - name: API_URL
+              value: "/api"
           resources:
             requests:
               memory: "256Mi"
