@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: teaching-platform-ingress
+  namespace: teaching-platform
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - local.teaching-platform.com
+    secretName: teaching-platform-tls
+  rules:
+  - host: local.teaching-platform.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: teaching-platform
+            port:
+              number: 8080
